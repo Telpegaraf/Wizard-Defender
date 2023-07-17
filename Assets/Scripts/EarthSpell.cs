@@ -72,7 +72,9 @@ public class EarthSpell : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
+        if (collision.CompareTag("Enemy") && collision.gameObject.GetComponent<Rigidbody2D>().velocity.x > 0)
+            collision.GetComponent<Health>().TakeDamage(damage * 3);
+        else if (collision.CompareTag("Enemy"))
             collision.GetComponent<Health>().TakeDamage(damage);
         if (collision.gameObject.name == "Road")
             Destroy(gameObject);
