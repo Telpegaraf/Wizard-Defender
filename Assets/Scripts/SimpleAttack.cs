@@ -11,9 +11,8 @@ public class SimpleAttack : MonoBehaviour
     [SerializeField] private Transform firepoint;
     [SerializeField] private GameObject spellPrefab;
     [SerializeField] private Transform limitPoint;
-
-    private float cooldownTimer = Mathf.Infinity;
     [SerializeField] private float rangeGizmosSphere;
+    private float cooldownTimer = Mathf.Infinity;
 
     private Transform target;
 

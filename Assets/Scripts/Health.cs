@@ -20,18 +20,10 @@ public class Health : MonoBehaviour
     {
         CurrentHealth = Mathf.Clamp(CurrentHealth - _damage, 0, maxHealth);
 
-        if (CurrentHealth > 0)
+        if (CurrentHealth <= 0) 
         {
-            Debug.Log(CurrentHealth);
-        }
-        else
-        {
+            SkillManager.UltimativePoints++;
             gameObject.SetActive(false);
-            //Debug.Log("Game Over");
-            //foreach (Behaviour component in components)
-            //{
-            //    component.enabled = false;
-            //}
         }
     }
 }

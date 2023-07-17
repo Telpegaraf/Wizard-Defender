@@ -100,9 +100,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3ce8280f7fb1ee4fab78ffb8cdb2977, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  rangeGizmosSphere: 0.8
-  secondRange: 2
+  snowBallSpeed: 2
+  firstRangeGizmosSphere: 0.8
+  secondRangeGizmosSphere: 2
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64

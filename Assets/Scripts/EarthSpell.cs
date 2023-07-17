@@ -29,8 +29,6 @@ public class EarthSpell : MonoBehaviour
         DrawPath(_InitialVelocity, angle, _Step);
         if (Input.GetKeyUp(KeyCode.Alpha2))
         {
-            //GetComponent<EarthAttack>().SetTimer();
-            //Instantiate(earthSpellPrefab, _Firepoint.transform.position, Quaternion.identity);
             StopAllCoroutines();
             StartCoroutine(Coroutine_Movement(_InitialVelocity, angle));
         }
@@ -63,7 +61,6 @@ public class EarthSpell : MonoBehaviour
             float x = v0 * t * Mathf.Cos(angle);
             float y = v0 * t * Mathf.Sin(angle) - (1f/2f) * -Physics.gravity.y * Mathf.Pow(t,2);
             transform.position = _Firepoint.position + new Vector3(x, y,0);
-            //transform.position = transform.position + new Vector3(x, y,0);
 
             t += Time.deltaTime;
             yield return null;

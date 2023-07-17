@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class SnowBall : MonoBehaviour
 {
-    [SerializeField] private float speed;
-    [SerializeField] private float rangeGizmosSphere;
-    [SerializeField] private float secondRange;
+    [Header ("SnowBall Parameteres")]
+    [SerializeField] private float snowBallSpeed;
+    [SerializeField] private float firstRangeGizmosSphere;
+    [SerializeField] private float secondRangeGizmosSphere;
     private CircleCollider2D circleCollider;
     private Rigidbody2D rb;
     [SerializeField] private LayerMask enemyLayer;
@@ -14,14 +15,13 @@ public class SnowBall : MonoBehaviour
 
     private void Awake()
     {
-        //InvokeRepeating("UpdateTarget", 0f, 0.25f);
         circleCollider = GetComponent<CircleCollider2D>();
         rb = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
     {
-        rb.velocity = new Vector3(-1 * speed, rb.velocity.y);
+        rb.velocity = new Vector3(-1 * snowBallSpeed, rb.velocity.y);
         if (FreezeCreatures())
         {
             Debug.Log("Freeze");
@@ -36,7 +36,7 @@ public class SnowBall : MonoBehaviour
     {
         RaycastHit2D hit =
             Physics2D.CircleCast(transform.position,
-            secondRange, Vector2.left, 0, enemyLayer);
+            secondRangeGizmosSphere, Vector2.left, 0, enemyLayer);
         if (hit.collider != null && transform.position.y !> hit.transform.position.y)
             hit.transform.GetComponent<Goblin>().FreezeSpeed();
         return hit.collider != null;
@@ -45,15 +45,15 @@ public class SnowBall : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(transform.position, rangeGizmosSphere);
-        Gizmos.DrawWireSphere(transform.position, secondRange);
+        Gizmos.DrawWireSphere(transform.position, firstRangeGizmosSphere);
+        Gizmos.DrawWireSphere(transform.position, secondRangeGizmosSphere);
     }
 
     private bool EnemyInCollision()
     {
         RaycastHit2D hit =
             Physics2D.CircleCast(transform.position,
-            rangeGizmosSphere, Vector2.left, 0, enemyLayer);
+            firstRangeGizmosSphere, Vector2.left, 0, enemyLayer);
         if (hit.collider != null)
             hit.transform.GetComponent<Goblin>().FreezeSpeed();
         return hit.collider != null;

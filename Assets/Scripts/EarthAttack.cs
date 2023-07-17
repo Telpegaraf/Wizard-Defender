@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EarthAttack : MonoBehaviour
 {
+    [Header ("Earth Spell Parameteres")]
     [SerializeField] private GameObject eathSpellPrefab;
     public float Timer {get; private set;}
     private int timer = 4;
