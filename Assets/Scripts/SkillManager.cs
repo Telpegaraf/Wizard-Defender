@@ -15,7 +15,7 @@ public class SkillManager : MonoBehaviour
     [Header("Earth Spell Parameteres")]
     [SerializeField] private GameObject eathSpellPrefab;
     [SerializeField] private TextMeshProUGUI earthSpellText;
-    public float Timer { get; private set; }
+    public float EarthSpellTimer { get; private set; }
     private int timer = 4;
 
     [Header("SnowBall Parameteres")]
@@ -32,19 +32,20 @@ public class SkillManager : MonoBehaviour
     private void Awake()
     {
         UltimativePoints = 0;
-        Timer = timer;
+        EarthSpellTimer = timer;
         //earthSpellText.text = Mathf.Round(Timer).ToString();
     }
 
     private void Update()
     {
         // Simple Spell
-        if (target == null)
-            return;
+        //if (target == null)
+            //return;
         // Earth Spell
-        Timer -= Time.deltaTime;
-        if (Timer > 0)
-            earthSpellText.text = Mathf.Round(Timer).ToString();
+        EarthSpellTimer -= Time.deltaTime;
+        Debug.Log(EarthSpellTimer);
+        if (EarthSpellTimer > 0)
+            earthSpellText.text = Mathf.Round(EarthSpellTimer).ToString();
         else
             earthSpellText.text = 0.ToString();
         // SnowBall
@@ -121,11 +122,11 @@ public class SkillManager : MonoBehaviour
 
     public void UseEarthSpell()
     {
-        if (Timer <= 0)
+        if (EarthSpellTimer <= 0)
         {
             UltimateCounterPlus();
             Instantiate(eathSpellPrefab, transform.position, Quaternion.identity);
-            Timer = timer;
+            EarthSpellTimer = timer;
         }
     }
     // Ult

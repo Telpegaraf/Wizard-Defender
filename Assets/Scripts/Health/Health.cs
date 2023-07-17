@@ -23,7 +23,7 @@ public class Health : MonoBehaviour
         if (CurrentHealth <= 0) 
         {
             SkillManager.UltimativePoints++;
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 }
