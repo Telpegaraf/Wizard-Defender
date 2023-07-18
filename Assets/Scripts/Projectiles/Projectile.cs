@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -24,7 +22,7 @@ public class Projectile : MonoBehaviour
         transform.Translate(movementSpeed, 0, 0);
         lifeTime += Time.deltaTime;
         if (lifeTime > 2.5)
-            gameObject.SetActive(false);
+            Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -56,6 +54,7 @@ public class Projectile : MonoBehaviour
 
     private void Deactivate()
     {
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 }

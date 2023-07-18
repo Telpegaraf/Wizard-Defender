@@ -11,6 +11,8 @@ public class EarthSpell : MonoBehaviour
     private Transform _Firepoint;
     //[SerializeField] GameObject earthSpellPrefab;
     private int damage = 7;
+    private int frozenTargetDamage = 14;
+    private int airTargetDamage = 21;
 
     private void Awake()
     {
@@ -69,10 +71,13 @@ public class EarthSpell : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy") && collision.gameObject.GetComponent<Rigidbody2D>().velocity.x > 0)
-            collision.GetComponent<Health>().TakeDamage(damage * 3);
-        else if (collision.CompareTag("Enemy"))
+        float speed = collision.gameObject.GetComponent<Rigidbody2D>().velocity.x;
+        if (collision.CompareTag("Enemy") &&  speed > 0 && speed < 5)
             collision.GetComponent<Health>().TakeDamage(damage);
+        else if (collision.CompareTag("Enemy") && speed == 0)
+            collision.GetComponent<Health>().TakeDamage(frozenTargetDamage);
+        else if (collision.CompareTag("Enemy") && speed > 4)
+            collision.GetComponent<Health>().TakeDamage(airTargetDamage);
         if (collision.gameObject.name == "Road")
             Destroy(gameObject);
     }

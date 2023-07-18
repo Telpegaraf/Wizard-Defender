@@ -1,11 +1,12 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Goblin : MonoBehaviour
+public class Enemies : MonoBehaviour
 {
     [SerializeField] private float maxSpeed;
-    private int damage = 1;
+    [SerializeField] private int damage;
     private Rigidbody2D rb;
     public float currentSpeed { get; private set; }
 

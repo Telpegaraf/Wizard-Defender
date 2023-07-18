@@ -38,7 +38,7 @@ public class SnowBall : MonoBehaviour
             Physics2D.CircleCast(transform.position,
             secondRangeGizmosSphere, Vector2.left, 0, enemyLayer);
         if (hit.collider != null && transform.position.y !> hit.transform.position.y)
-            hit.transform.GetComponent<Goblin>().FreezeSpeed();
+            hit.transform.GetComponent<Enemies>().FreezeSpeed();
         return hit.collider != null;
     }
 
@@ -55,7 +55,7 @@ public class SnowBall : MonoBehaviour
             Physics2D.CircleCast(transform.position,
             firstRangeGizmosSphere, Vector2.left, 0, enemyLayer);
         if (hit.collider != null)
-            hit.transform.GetComponent<Goblin>().FreezeSpeed();
+            hit.transform.GetComponent<Enemies>().FreezeSpeed();
         return hit.collider != null;
     }
 }

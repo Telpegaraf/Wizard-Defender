@@ -10,6 +10,7 @@ public class SkillManager : MonoBehaviour
     [SerializeField] private GameObject spellPrefab;
     [SerializeField] private Transform limitPoint;
     [SerializeField] private float rangeGizmosSphere;
+    [SerializeField] private Transform nonTargetPoint;
     private Transform target;
 
     [Header("Earth Spell Parameteres")]
@@ -27,6 +28,7 @@ public class SkillManager : MonoBehaviour
     [Header("Ultimate parameteres")]
     [SerializeField] private GameObject ultimativePrefab;
     [SerializeField] private TextMeshProUGUI ultimativeText;
+    [SerializeField] private Transform LightningSpawnPoint;
     public static int UltimativePoints = 0;
 
     private void Awake()
@@ -38,12 +40,9 @@ public class SkillManager : MonoBehaviour
 
     private void Update()
     {
-        // Simple Spell
-        //if (target == null)
-            //return;
+        
         // Earth Spell
         EarthSpellTimer -= Time.deltaTime;
-        Debug.Log(EarthSpellTimer);
         if (EarthSpellTimer > 0)
             earthSpellText.text = Mathf.Round(EarthSpellTimer).ToString();
         else
@@ -104,7 +103,7 @@ public class SkillManager : MonoBehaviour
         }
         else
         {
-            target = null;
+            target = nonTargetPoint;  
         }
     }
 
@@ -133,5 +132,14 @@ public class SkillManager : MonoBehaviour
     public void UltimateCounterPlus()
     {
         UltimativePoints++;
+    }
+
+    public void CastUltimate()
+    {
+        if (UltimativePoints >= 25)
+        {
+            Instantiate(ultimativePrefab, LightningSpawnPoint.position, Quaternion.identity);
+            UltimativePoints -=25;
+        }
     }
 }
