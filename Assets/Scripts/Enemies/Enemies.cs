@@ -8,12 +8,16 @@ public class Enemies : MonoBehaviour
     [SerializeField] private float maxSpeed;
     [SerializeField] private int damage;
     private Rigidbody2D rb;
+    private Animator anim;
     public float currentSpeed { get; private set; }
 
     private void Awake()
     {
-        currentSpeed = maxSpeed;
+        anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        currentSpeed = maxSpeed;
+        //if (currentSpeed == 5)
+            //BirdAnimation();
     }
 
     private void Update()
@@ -29,8 +33,10 @@ public class Enemies : MonoBehaviour
     private IEnumerator Freeze()
     {
         currentSpeed = 0;
+        anim.SetBool("isFreeze", true);
         yield return new WaitForSeconds(4);
-        currentSpeed = 4;
+        currentSpeed = maxSpeed;
+        anim.SetBool("isFreeze", false);
         yield return null;
     }
 
@@ -41,5 +47,10 @@ public class Enemies : MonoBehaviour
             gameObject.SetActive(false);
             collision.GetComponent<Health>().TakeDamage(damage);
         }
+    }
+
+    private void BirdAnimation()
+    {
+
     }
 }

@@ -9,6 +9,7 @@ public class EarthSpell : MonoBehaviour
     //[SerializeField] LineRenderer _Line;
     [SerializeField] float _Step;
     private Transform _Firepoint;
+    //private Animator anim;
     //[SerializeField] GameObject earthSpellPrefab;
     private int damage = 7;
     private int frozenTargetDamage = 14;
@@ -16,6 +17,7 @@ public class EarthSpell : MonoBehaviour
 
     private void Awake()
     {
+        //anim = GetComponent<Animator>();
         GameObject firepoint = GameObject.Find("Player");
         _Firepoint = firepoint.transform;
         float angle = _Angle * Mathf.Deg2Rad;
@@ -79,6 +81,9 @@ public class EarthSpell : MonoBehaviour
         else if (collision.CompareTag("Enemy") && speed > 4)
             collision.GetComponent<Health>().TakeDamage(airTargetDamage);
         if (collision.gameObject.name == "Road")
+        {
+            //anim.SetTrigger("Explode");
             Destroy(gameObject);
+        }
     }
 }

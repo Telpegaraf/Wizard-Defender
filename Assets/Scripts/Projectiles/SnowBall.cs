@@ -22,10 +22,6 @@ public class SnowBall : MonoBehaviour
     private void Update()
     {
         rb.velocity = new Vector3(-1 * snowBallSpeed, rb.velocity.y);
-        if (FreezeCreatures())
-        {
-            Debug.Log("Freeze");
-        }
         if (EnemyInCollision())
         {
             Destroy(gameObject);

@@ -40,7 +40,6 @@ public class SkillManager : MonoBehaviour
 
     private void Update()
     {
-        
         // Earth Spell
         EarthSpellTimer -= Time.deltaTime;
         if (EarthSpellTimer > 0)

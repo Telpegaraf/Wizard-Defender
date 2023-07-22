@@ -23,7 +23,6 @@ public class WaveSpawner : MonoBehaviour
             SpawnEnemy();
             countDown = timeBetweenWaves;
         }
-        Debug.Log(timeBetweenWaves);
         countDown -= Time.deltaTime;
     }
 
